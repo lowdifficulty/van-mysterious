@@ -1,0 +1,411 @@
+{
+  "site": {
+    "name": "Van",
+    "tagline": "A midnight picture you can walk into.",
+    "blurb": "A fictional muse for cinema and games — an interactive archive, not a booking desk.",
+    "homeKicker": "MIDNIGHT PICTURE · GAME TITLE",
+    "homeLede": "A fictional muse at the edge of the frame — velvet, fog, and a lantern you can follow.",
+    "footerLine": "Van · a fictional muse · cinema and games",
+    "footerNote": "Interactive entertainment. Not a booking service."
+  },
+  "nav": [
+    {
+      "href": "/",
+      "label": "Home"
+    },
+    {
+      "href": "/about",
+      "label": "About"
+    },
+    {
+      "href": "/gallery",
+      "label": "Gallery"
+    },
+    {
+      "href": "/experiences",
+      "label": "Experiences"
+    },
+    {
+      "href": "/diary",
+      "label": "Diary"
+    },
+    {
+      "href": "/reviews",
+      "label": "Reviews"
+    },
+    {
+      "href": "/qa",
+      "label": "Q & A"
+    },
+    {
+      "href": "/contact",
+      "label": "Contact"
+    },
+    {
+      "href": "/games",
+      "label": "Games"
+    },
+    {
+      "href": "/policies",
+      "label": "Policies"
+    }
+  ],
+  "chapters": [
+    {
+      "href": "/about",
+      "label": "About"
+    },
+    {
+      "href": "/gallery",
+      "label": "Gallery"
+    },
+    {
+      "href": "/experiences",
+      "label": "Experiences"
+    },
+    {
+      "href": "/diary",
+      "label": "Diary"
+    },
+    {
+      "href": "/reviews",
+      "label": "Reviews"
+    },
+    {
+      "href": "/qa",
+      "label": "Q & A"
+    },
+    {
+      "href": "/contact",
+      "label": "Contact"
+    },
+    {
+      "href": "/games",
+      "label": "Games"
+    }
+  ],
+  "enter": {
+    "kicker": "The house is dark",
+    "agreeLead": "Before any picture, you must open and read the Policies, then click Agree. The archive will not unlock on a glance.",
+    "detailsLead": "You have agreed to the Policies. Confirm you are 18 or older and leave the few details the gate requires."
+  },
+  "about": {
+    "kicker": "Description",
+    "title": "The muse in the cut",
+    "lede": "Van is a fictional figure written for midnight cinema and games — a presence, not a booking.",
+    "paragraphs": [
+      "She arrives the way a title card arrives: already in costume, already mid-scene. Van is the silhouette at the end of a fog walk, the name in a serif too large for a business card, the save point that loads a street instead of a lobby.",
+      "This archive treats her as art. The stills are invented frames. The diary is atmosphere. The experiences are cinematic and virtual sessions — screenings, walks, cuts, and scene cards — priced as entertainment packages, never as company. If you came looking for a person to hire, the house lights stay down.",
+      "The tone is a midnight movie crossed with a game title screen: velvet black, candle gold, weather that behaves like a lens. Fun, a little mysterious, and careful. Van does not owe you a biography. She owes you a picture you can step into and leave when the credits start.",
+      "You are a viewer and a player. The gate asked your name so the door would know you. The rest is fog we agreed to call a story."
+    ]
+  },
+  "gallery": {
+    "kicker": "Portfolio",
+    "title": "Stills from a picture that was never shot",
+    "lede": "Original cinematic frames — light, fog, and geometry. No stolen photographs. No faces borrowed from the living.",
+    "stills": [
+      {
+        "id": "streetlight",
+        "title": "Streetlight, 2:14 a.m.",
+        "caption": "A gold coin of light. The rest of the block refuses to exist.",
+        "ratio": "wide"
+      },
+      {
+        "id": "fogwalk",
+        "title": "Fog Walk No. 7",
+        "caption": "Footsteps that sound like film perforations.",
+        "ratio": "tall"
+      },
+      {
+        "id": "velvet",
+        "title": "House Lights Down",
+        "caption": "The curtain is a held breath in red-black.",
+        "ratio": "wide"
+      },
+      {
+        "id": "reel",
+        "title": "Archive Cut",
+        "caption": "A reel that was never catalogued, only remembered.",
+        "ratio": "square"
+      },
+      {
+        "id": "window",
+        "title": "Rain Grammar",
+        "caption": "The pane writes a language no subtitle can catch.",
+        "ratio": "tall"
+      },
+      {
+        "id": "lantern",
+        "title": "Lantern Study",
+        "caption": "One flame. Enough to invent a path.",
+        "ratio": "square"
+      },
+      {
+        "id": "platform",
+        "title": "Last Platform",
+        "caption": "A train that is only a rumor of steel and steam.",
+        "ratio": "wide"
+      },
+      {
+        "id": "mask",
+        "title": "Gold Half-Mask",
+        "caption": "The face you keep for title cards.",
+        "ratio": "square"
+      },
+      {
+        "id": "chair",
+        "title": "Empty Mark",
+        "caption": "A chair in a spotlight, waiting for a scene that already happened.",
+        "ratio": "tall"
+      },
+      {
+        "id": "corridor",
+        "title": "Doors, Unnumbered",
+        "caption": "Every door is a save point. None of them load the same room.",
+        "ratio": "wide"
+      },
+      {
+        "id": "moon",
+        "title": "Moon Through Rigging",
+        "caption": "Trees like boom mics. Night like undeveloped stock.",
+        "ratio": "square"
+      },
+      {
+        "id": "ticket",
+        "title": "Stub in the Coat",
+        "caption": "Admit one. The seat is a feeling, not a number.",
+        "ratio": "tall"
+      }
+    ]
+  },
+  "experiences": {
+    "kicker": "Packages",
+    "title": "Sessions in the dark",
+    "lede": "Cinematic and virtual story sessions — entertainment packages from the premiere night down to a single streetlight. Not companionship. Not an appointment with a person.",
+    "items": [
+      {
+        "tier": "Premium",
+        "name": "Midnight Screeningg",
+        "price": "$180",
+        "length": "90 minutes, virtual",
+        "summary": "A private cinematic session: a scored short, director’s notes, and one exclusive still from the locked cabinet.",
+        "includes": [
+          "Guided virtual screening in the archive theater",
+          "Spoken scene notes and a written afterimage",
+          "Unlock of a hidden gallery frame",
+          "A closing title card generated for your visit"
+        ]
+      },
+      {
+        "tier": "SIGNATURE",
+        "name": "Fog Walk",
+        "price": "$120",
+        "length": "60 minutes, virtual",
+        "summary": "A narrated night walk through the lantern streets — part story, part game, part weather.",
+        "includes": [
+          "Live-paced story path with branching lanterns",
+          "Early access to the Fog Walk mini-game ending",
+          "A diary excerpt written for the route you took"
+        ]
+      },
+      {
+        "tier": "Standard",
+        "name": "Archive Cut",
+        "price": "$75",
+        "length": "40 minutes, virtual",
+        "summary": "A curated reel of stills and voice notes — the workprint, not the premiere.",
+        "includes": [
+          "Edited sequence of six archive frames",
+          "Printed-style PDF of the cut list",
+          "One question answered from the Q & A vault"
+        ]
+      },
+      {
+        "tier": "Basic",
+        "name": "Streetlight Scene",
+        "price": "$40",
+        "length": "20 minutes, virtual",
+        "summary": "A single scene card, one still, and a short score cue. Enough to start the picture.",
+        "includes": [
+          "One cinematic still and caption",
+          "A two-minute audio cue",
+          "A ticket stub for the Game Hub"
+        ]
+      }
+    ]
+  },
+  "diary": {
+    "kicker": "Blog",
+    "title": "Pages left in the coat",
+    "lede": "Atmospheric notes from the archive — workprints, weather, and the occasional ticket stub.",
+    "entries": [
+      {
+        "slug": "the-cut-that-never-made-the-reel",
+        "title": "The Cut That Never Made the Reel",
+        "date": "12 August 2026",
+        "kicker": "Workprint",
+        "excerpt": "There is a version of the night that ends before the music does. I keep that version in a tin.",
+        "body": [
+          "They asked for a clean ending. I offered a hallway that keeps going. In the tin there is a strip of frames where I turn toward the camera and do not quite arrive. The lab called it a scratch. I called it the only honest take.",
+          "Van, in this fiction, is not a person you can schedule. She is a temperature. A coat left on a chair. A save file that opens onto fog. If you came looking for a biography, the archive will disappoint you kindly and hand you a lantern instead.",
+          "Tonight I watched the unused cut again. The streetlight blinks once, as if it knows it is being remembered. That is enough plot for a Thursday."
+        ]
+      },
+      {
+        "slug": "notes-from-a-fog-walk",
+        "title": "Notes from a Fog Walk",
+        "date": "3 August 2026",
+        "kicker": "Field notes",
+        "excerpt": "Visibility: a rumor. Sound: wool. Objective: do not name the destination until it names you.",
+        "body": [
+          "A fog walk is not exercise. It is a camera move you perform with your feet. You light the next lantern only when the previous one has taught you its radius.",
+          "I wrote the rules on the inside of a ticket: no running, no photographs of faces that are not there, no asking the weather to hurry. The game is patience dressed as exploration.",
+          "At the sixth lantern a silhouette held still long enough to be a painting. Then it was a loading screen. Then it was morning, which is a kind of credits roll."
+        ]
+      },
+      {
+        "slug": "a-ticket-stub-in-the-coat",
+        "title": "A Ticket Stub in the Coat",
+        "date": "21 July 2026",
+        "kicker": "Prop department",
+        "excerpt": "Admit one. The seat is a feeling. The feature has already started, which is the point.",
+        "body": [
+          "Someone — a viewer, a player, a person who likes doors — left a stub in the velvet pocket of the house coat. The ink had gone the color of old gold. The title was smudged into a single letter: V.",
+          "I keep lost props. They are how a fictional archive proves it was visited. Not with invoices. With small paper that remembers fingers.",
+          "If you come through the gate, you may leave a stub of your own. Name, a date, a sentence you would hide in a coat. That is the whole economy of this place."
+        ]
+      },
+      {
+        "slug": "how-to-lose-a-name-in-a-title-sequence",
+        "title": "How to Lose a Name in a Title Sequence",
+        "date": "9 July 2026",
+        "kicker": "Title design",
+        "excerpt": "The wordmark is only Van. Everything else is fog we agreed to call a biography.",
+        "body": [
+          "Names are heavy in daylight. At midnight they become typography. Van is a serif, a pause, a figure who can stand in a frame without explaining the plot.",
+          "This site is built as entertainment: stills that never belonged to a paparazzo, sessions that happen in a browser, games that treat night as a level. The muse is fictional on purpose. The feeling is not.",
+          "If you need a moral, take this one: beauty can be a locked cabinet you are invited to open, not a person you are invited to purchase."
+        ]
+      }
+    ]
+  },
+  "reviews": {
+    "kicker": "In-world",
+    "title": "What the audience kept",
+    "lede": "Fictional testimonials from viewers and players who stayed for the weather.",
+    "items": [
+      {
+        "quote": "I came expecting a portfolio. I found a title screen that let me stay. The stills feel like memories I did not earn, which is the highest compliment I have for fiction.",
+        "name": "M. Calder",
+        "role": "Viewer · midnight screening"
+      },
+      {
+        "quote": "The Fog Walk plays like a short film you are allowed to interrupt. I lit every lantern and still wanted the weather to continue.",
+        "name": "Juniper Vale",
+        "role": "Player · Game Hub"
+      },
+      {
+        "quote": "Archive Cut is the right length for a lunch that became a theater. No cheap neon. No hard sell. Just a reel that knows when to end.",
+        "name": "R. Solenne",
+        "role": "Guest · Archive Cut"
+      },
+      {
+        "quote": "Van, as written, is a muse with manners. The gate took me seriously. The diary made me slower. I will return when the next still is hung.",
+        "name": "Theo Hart",
+        "role": "Reader · Diary"
+      },
+      {
+        "quote": "Streetlight Scene is a postcard from a city that exists one hour a night. I played the cue twice and stared at the rain grammar frame like it owed me rent.",
+        "name": "A. Pell",
+        "role": "Guest · Streetlight Scene"
+      },
+      {
+        "quote": "The memory reel is a small game with a large aftertaste. Matching masks to moons should not feel like editing a film. It did.",
+        "name": "Lina Ost",
+        "role": "Player · Archive Match"
+      }
+    ]
+  },
+  "qa": {
+    "kicker": "Q & A",
+    "title": "Questions the dark already answered",
+    "lede": "A short briefing for viewers and players. The long version lives in Policies.",
+    "items": [
+      {
+        "q": "Who is Van?",
+        "a": "Van is a fictional muse — a character written for cinema and games. She is not a real person offering meetings, dates, or companionship. This archive is art, story, and interactive entertainment."
+      },
+      {
+        "q": "Is any of this a real booking service?",
+        "a": "No. Experiences are virtual cinematic sessions and game-story packages. There is no in-person appointment, no escorting, and no paid companionship. If that is what you wanted, this is the wrong door."
+      },
+      {
+        "q": "Why the gate?",
+        "a": "The pictures and stories are made for adults. You must read the Policies, agree, and confirm you are 18 or older before the archive opens. We keep only the details required for that door: name, email, date of birth, and your consent."
+      },
+      {
+        "q": "What will I see in the Gallery?",
+        "a": "Original cinematic frames — gradients, fog, velvet, gold light — composed for this site. No stolen photographs. No images of real private people presented as Van."
+      },
+      {
+        "q": "What is the Game Hub?",
+        "a": "A small lobby with original browser games that belong to the same night: a lantern walk through fog, and a film-reel memory match. No licensed game worlds. No scoreboards that sell your name."
+      },
+      {
+        "q": "How do Experiences work?",
+        "a": "They are packaged entertainment: a virtual screening, a narrated walk, a curated reel, or a short scene. Prices describe the package, not a person. Nothing here is an hourly rate for company."
+      },
+      {
+        "q": "What do you do with my information?",
+        "a": "Name, email, and date of birth live in an encrypted session cookie on your device so the gate remembers you. We do not ask for a phone number or government ID. See Policies for the full note."
+      },
+      {
+        "q": "How do I leave?",
+        "a": "Use Reset gate in the menu. The session cookie is destroyed and the archive locks again. You can also close the browser and walk back into ordinary light."
+      }
+    ]
+  },
+  "contact": {
+    "kicker": "The lobby",
+    "title": "Leave a note",
+    "lede": "A message to the archive — questions about the fiction, the games, or the stills. Not a request for a meeting."
+  },
+  "games": {
+    "kicker": "Game Hub",
+    "title": "Play the weather",
+    "lede": "Two original browser games from the same night. No licensed worlds. No score that follows you home.",
+    "fogKicker": "Explore",
+    "fogTitle": "Fog Walk",
+    "fogLede": "Light the lanterns. Read the night. Find the silhouette at the end of the path.",
+    "matchKicker": "Memory",
+    "matchTitle": "Archive Match",
+    "matchLede": "A film-reel memory game. Pair the props until the cut is assembled."
+  },
+  "policies": {
+    "kicker": "House rules",
+    "title": "Policies",
+    "sections": [
+      {
+        "heading": "Age",
+        "body": "This archive is for adults. You must be 18 or older to enter. We ask for your date of birth so the gate can refuse a younger visitor. There is no content here involving minors, and none will be added."
+      },
+      {
+        "heading": "Fiction and entertainment",
+        "body": "Van is a fictional character — a muse written for cinema and games. Everything on this site is art, story, and interactive entertainment. Experiences are virtual cinematic or game-story packages. They are not in-person meetings, dating, companionship, or adult sexual services. Do not treat the archive as a directory of real people for hire."
+      },
+      {
+        "heading": "Privacy",
+        "body": "The gate collects only what it needs: your full name, email, date of birth, and your agreement. These live in an encrypted session cookie on your device so the door remembers you. We do not ask for a phone number, government ID, or other extra personal data. We do not sell this information. Use Reset gate to destroy the session."
+      },
+      {
+        "heading": "No scraping",
+        "body": "Automated copying, harvesting, or bulk download of this archive is not allowed. The stills, copy, and games are original to this site. Take a memory, not a dataset."
+      },
+      {
+        "heading": "Conduct",
+        "body": "Be a good audience. Do not use the contact form to solicit meetings, payments for companionship, or anything that contradicts the fiction-and-entertainment rule. Harassment, scraping, or attempts to bypass the age gate will close the house."
+      }
+    ]
+  }
+}
