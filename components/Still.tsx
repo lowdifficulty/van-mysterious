@@ -140,43 +140,50 @@ export function Still({
   id,
   titlePath,
   captionPath,
-  ratio,
+  ratio: _ratio,
+  imageUrl,
 }: {
   id: string;
   titlePath: string;
   captionPath: string;
   ratio: string;
+  imageUrl?: string;
 }) {
   const frame = frames[id] ?? frames.reel;
-  const height =
-    ratio === "tall"
-      ? "min-h-[280px] sm:min-h-[420px]"
-      : ratio === "wide"
-        ? "min-h-[180px] sm:min-h-[240px]"
-        : "min-h-[220px] sm:min-h-[300px]";
 
   return (
-    <figure className="group card-cinema overflow-hidden">
-      <div className={`relative ${height} overflow-hidden`}>
-        <div
-          className="absolute inset-0 transition-transform duration-[4000ms] group-hover:scale-105"
-          style={{ background: frame.gradient }}
-        />
-        <svg
-          viewBox="0 0 200 200"
-          className="absolute inset-0 h-full w-full"
-          preserveAspectRatio="xMidYMid slice"
-          aria-hidden
-        >
-          {frame.svg}
-        </svg>
+    <figure className="group card-cinema flex h-full flex-col overflow-hidden">
+      <div className="relative aspect-[4/5] w-full overflow-hidden">
+        {imageUrl ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={imageUrl}
+            alt=""
+            className="absolute inset-0 h-full w-full object-cover transition-transform duration-[4000ms] group-hover:scale-105"
+          />
+        ) : (
+          <>
+            <div
+              className="absolute inset-0 transition-transform duration-[4000ms] group-hover:scale-105"
+              style={{ background: frame.gradient }}
+            />
+            <svg
+              viewBox="0 0 200 200"
+              className="absolute inset-0 h-full w-full"
+              preserveAspectRatio="xMidYMid slice"
+              aria-hidden
+            >
+              {frame.svg}
+            </svg>
+          </>
+        )}
         <div className="absolute inset-0 bg-gradient-to-t from-velvet via-transparent to-black/20" />
       </div>
       <figcaption className="border-t border-gold/10 px-5 py-4">
         <Editable
           path={titlePath}
           as="p"
-          className="font-display text-2xl text-cream"
+          className="font-display line-clamp-2 min-h-[2.5rem] text-2xl text-cream"
         />
         <Editable
           path={captionPath}

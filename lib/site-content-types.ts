@@ -1,10 +1,26 @@
-export type NavItem = { href: string; label: string };
+export type NavItem = { href: string; label: string; hidden?: boolean };
 
 export type StillContent = {
   id: string;
   title: string;
   caption: string;
   ratio: string;
+  imageUrl?: string;
+};
+
+export type SiteBlockType = "text" | "image" | "quote" | "cta" | "contact";
+
+export type SiteBlock = {
+  id: string;
+  type: SiteBlockType;
+  visible: boolean;
+  kicker?: string;
+  title?: string;
+  body?: string;
+  buttonLabel?: string;
+  buttonHref?: string;
+  imageUrl?: string;
+  quoteName?: string;
 };
 
 export type ExperienceContent = {
@@ -48,6 +64,10 @@ export type SiteContent = {
     homeLede: string;
     footerLine: string;
     footerNote: string;
+    seoTitle?: string;
+    seoDescription?: string;
+    defaultTheme?: "dark" | "light";
+    blocks: SiteBlock[];
   };
   nav: NavItem[];
   chapters: NavItem[];

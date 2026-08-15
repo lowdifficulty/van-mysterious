@@ -11,6 +11,10 @@ export const defaultContent: SiteContent = {
       "A fictional muse at the edge of the frame — velvet, fog, and a lantern you can follow.",
     footerLine: "Van · a fictional muse · cinema and games",
     footerNote: "Interactive entertainment. Not a booking service.",
+    seoTitle: "",
+    seoDescription: "",
+    defaultTheme: "dark",
+    blocks: [],
   },
   nav: [
     { href: "/", label: "Home" },

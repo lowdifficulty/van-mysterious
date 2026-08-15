@@ -19,6 +19,7 @@ type StudioContextValue = {
   draft: SiteContent;
   setEditing: (value: boolean) => void;
   setField: (path: string, value: string) => void;
+  updateDraft: (updater: (current: SiteContent) => SiteContent) => void;
   save: () => Promise<boolean>;
   text: (path: string) => string;
 };
@@ -41,6 +42,11 @@ export function StudioProvider({
 
   const setField = useCallback((path: string, value: string) => {
     setDraft((current) => setPath(current, path, value));
+    setDirty(true);
+  }, []);
+
+  const updateDraft = useCallback((updater: (current: SiteContent) => SiteContent) => {
+    setDraft((current) => updater(current));
     setDirty(true);
   }, []);
 
@@ -69,10 +75,11 @@ export function StudioProvider({
       draft,
       setEditing,
       setField,
+      updateDraft,
       save,
       text: (path: string) => getPath(draft, path),
     }),
-    [dirty, draft, editing, isStudio, save, saving, setField],
+    [dirty, draft, editing, isStudio, save, saving, setField, updateDraft],
   );
 
   return <StudioContext.Provider value={value}>{children}</StudioContext.Provider>;

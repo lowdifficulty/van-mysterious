@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { EditorDrawer, type EditorPanel } from "@/components/studio/EditorDrawer";
 import { useStudio } from "@/components/studio/StudioContext";
 
 const pages = [
@@ -23,6 +24,7 @@ export function StudioChrome() {
   const pathname = usePathname();
   const router = useRouter();
   const { editing, setEditing, dirty, saving, save } = useStudio();
+  const [panel, setPanel] = useState<EditorPanel>(null);
 
   useEffect(() => {
     if (!editing || pathname.startsWith("/admin")) return;
@@ -36,7 +38,7 @@ export function StudioChrome() {
     };
     document.addEventListener("click", block, true);
     return () => document.removeEventListener("click", block, true);
-  }, [editing]);
+  }, [editing, pathname]);
 
   const onSave = async () => {
     const ok = await save();
@@ -50,13 +52,29 @@ export function StudioChrome() {
     router.refresh();
   };
 
+  const togglePanel = (next: EditorPanel) => {
+    setPanel((current) => (current === next ? null : next));
+  };
+
   return (
     <>
       <div className="studio-bar" data-studio-nav>
-        <div className="flex min-w-0 flex-wrap items-center gap-3 sm:gap-4">
+        <div className="flex min-w-0 flex-wrap items-center gap-2 sm:gap-3">
           <p className="font-display text-lg tracking-wide text-cream sm:text-xl">
             Van Studio
           </p>
+          <button type="button" className="btn-ghost !px-3 !py-2" onClick={() => togglePanel("add")}>
+            + Add
+          </button>
+          <button type="button" className="btn-ghost !px-3 !py-2" onClick={() => togglePanel("pages")}>
+            Pages
+          </button>
+          <button type="button" className="btn-ghost !px-3 !py-2" onClick={() => togglePanel("design")}>
+            Design
+          </button>
+          <button type="button" className="btn-ghost !px-3 !py-2" onClick={() => togglePanel("media")}>
+            Media
+          </button>
           <button
             type="button"
             className={`studio-toggle ${editing ? "is-on" : ""}`}
@@ -79,7 +97,7 @@ export function StudioChrome() {
             onClick={onSave}
             disabled={saving || !dirty}
           >
-            {saving ? "Saving…" : "Save to site"}
+            {saving ? "Publishing…" : "Publish"}
           </button>
           <button type="button" className="btn-ghost !px-3 !py-2" onClick={onExit}>
             Exit
@@ -97,6 +115,7 @@ export function StudioChrome() {
           </Link>
         ))}
       </nav>
+      <EditorDrawer panel={panel} onClose={() => setPanel(null)} />
     </>
   );
 }

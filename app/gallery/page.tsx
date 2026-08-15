@@ -18,16 +18,16 @@ export default async function GalleryPage() {
   return (
     <main className="mx-auto w-full max-w-6xl px-5 py-16 md:py-24">
       <PageHeader basePath="gallery" />
-      <div className="columns-1 gap-6 md:columns-2 xl:columns-3">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
         {content.gallery.stills.map((still, index) => (
-          <div key={still.id} className="mb-6 break-inside-avoid">
-            <Still
-              id={still.id}
-              titlePath={`gallery.stills.${index}.title`}
-              captionPath={`gallery.stills.${index}.caption`}
-              ratio={still.ratio}
-            />
-          </div>
+          <Still
+            key={`${still.id}-${index}`}
+            id={still.id}
+            titlePath={`gallery.stills.${index}.title`}
+            captionPath={`gallery.stills.${index}.caption`}
+            ratio={still.ratio}
+            imageUrl={still.imageUrl}
+          />
         ))}
       </div>
     </main>

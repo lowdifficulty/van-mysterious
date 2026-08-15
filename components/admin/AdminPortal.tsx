@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useMemo, useState } from "react";
 import { slugify } from "@/lib/slug";
+import { uploadStudioImage } from "@/lib/upload-image";
 import type {
   DiaryEntry,
   ExperienceContent,
@@ -13,6 +14,9 @@ import type {
 } from "@/lib/site-content-types";
 
 const TABS = [
+  { id: "site", label: "Site" },
+  { id: "pages", label: "Pages" },
+  { id: "media", label: "Media" },
   { id: "gallery", label: "Gallery" },
   { id: "diary", label: "Diary" },
   { id: "experiences", label: "Experiences" },
@@ -99,7 +103,7 @@ function PageCopyFields({
 
 export function AdminPortal({ initial }: { initial: SiteContent }) {
   const router = useRouter();
-  const [tab, setTab] = useState<TabId>("gallery");
+  const [tab, setTab] = useState<TabId>("site");
   const [draft, setDraft] = useState(initial);
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState("");
@@ -143,8 +147,8 @@ export function AdminPortal({ initial }: { initial: SiteContent }) {
             Custom content
           </h1>
           <p className="mt-3 max-w-xl text-muted">
-            Add, edit, or remove gallery stills, diary entries, experiences,
-            reviews, and Q & A. Save publishes them on the website.
+            Wix-style site tools: pages, media, design, plus gallery, diary,
+            experiences, reviews, and Q & A. Publish writes them to the live site.
           </p>
         </div>
         <div className="flex w-full flex-col items-stretch gap-3 sm:w-auto sm:items-end">
@@ -170,11 +174,16 @@ export function AdminPortal({ initial }: { initial: SiteContent }) {
             onClick={() => setTab(item.id)}
           >
             {item.label}
-            <span className="ml-2 text-gold/70">{counts[item.id]}</span>
+            {item.id in counts ? (
+              <span className="ml-2 text-gold/70">{counts[item.id as keyof typeof counts]}</span>
+            ) : null}
           </button>
         ))}
       </div>
 
+      {tab === "site" ? <SiteAdmin content={draft} setDraft={setDraft} /> : null}
+      {tab === "pages" ? <PagesAdmin content={draft} setDraft={setDraft} /> : null}
+      {tab === "media" ? <MediaAdmin content={draft} setDraft={setDraft} /> : null}
       {tab === "gallery" ? (
         <GalleryAdmin
           content={draft}
@@ -296,6 +305,13 @@ function GalleryAdmin({
                 <option value="square">Square</option>
               </select>
             </label>
+            <div className="md:col-span-2">
+              <Field
+                label="Image URL"
+                value={still.imageUrl ?? ""}
+                onChange={(value) => updateStill(index, { imageUrl: value })}
+              />
+            </div>
             <div className="md:col-span-2">
               <Field
                 label="Caption"
@@ -724,6 +740,163 @@ function QaAdmin({
             value={item.a}
             multiline
             onChange={(value) => updateItem(index, { a: value })}
+          />
+        </article>
+      ))}
+    </div>
+  );
+}
+
+function SiteAdmin({
+  content,
+  setDraft,
+}: {
+  content: SiteContent;
+  setDraft: (updater: (current: SiteContent) => SiteContent) => void;
+}) {
+  const setSite = (patch: Partial<SiteContent["site"]>) => {
+    setDraft((current) => ({ ...current, site: { ...current.site, ...patch } }));
+  };
+
+  return (
+    <div className="grid gap-4 md:grid-cols-2">
+      <Field label="Site name" value={content.site.name} onChange={(value) => setSite({ name: value })} />
+      <Field label="Tagline" value={content.site.tagline} onChange={(value) => setSite({ tagline: value })} />
+      <div className="md:col-span-2">
+        <Field label="Blurb" value={content.site.blurb} multiline onChange={(value) => setSite({ blurb: value })} />
+      </div>
+      <Field
+        label="SEO title"
+        value={content.site.seoTitle ?? ""}
+        onChange={(value) => setSite({ seoTitle: value })}
+      />
+      <label className="block">
+        <span className="mb-2 block text-[0.65rem] uppercase tracking-[0.2em] text-gold">
+          Default theme
+        </span>
+        <select
+          className="input-cinema"
+          value={content.site.defaultTheme === "light" ? "light" : "dark"}
+          onChange={(event) =>
+            setSite({ defaultTheme: event.target.value === "light" ? "light" : "dark" })
+          }
+        >
+          <option value="dark">Dark noir</option>
+          <option value="light">Light paper</option>
+        </select>
+      </label>
+      <div className="md:col-span-2">
+        <Field
+          label="SEO description"
+          value={content.site.seoDescription ?? ""}
+          multiline
+          onChange={(value) => setSite({ seoDescription: value })}
+        />
+      </div>
+      <Field
+        label="Footer line"
+        value={content.site.footerLine}
+        onChange={(value) => setSite({ footerLine: value })}
+      />
+      <Field
+        label="Footer note"
+        value={content.site.footerNote}
+        onChange={(value) => setSite({ footerNote: value })}
+      />
+    </div>
+  );
+}
+
+function PagesAdmin({
+  content,
+  setDraft,
+}: {
+  content: SiteContent;
+  setDraft: (updater: (current: SiteContent) => SiteContent) => void;
+}) {
+  return (
+    <div className="space-y-3">
+      {content.nav.map((item, index) => (
+        <article key={item.href} className="card-cinema flex flex-wrap items-center gap-4 p-4">
+          <input
+            className="input-cinema min-w-40 flex-1"
+            value={item.label}
+            onChange={(event) => {
+              const label = event.target.value;
+              setDraft((current) => ({
+                ...current,
+                nav: current.nav.map((entry, i) => (i === index ? { ...entry, label } : entry)),
+                chapters: current.chapters.map((entry) =>
+                  entry.href === item.href ? { ...entry, label } : entry,
+                ),
+              }));
+            }}
+          />
+          <label className="flex items-center gap-2 text-sm text-muted">
+            <input
+              type="checkbox"
+              checked={!item.hidden}
+              onChange={(event) => {
+                const hidden = !event.target.checked;
+                setDraft((current) => ({
+                  ...current,
+                  nav: current.nav.map((entry, i) => (i === index ? { ...entry, hidden } : entry)),
+                  chapters: current.chapters.map((entry) =>
+                    entry.href === item.href ? { ...entry, hidden } : entry,
+                  ),
+                }));
+              }}
+            />
+            In menu
+          </label>
+        </article>
+      ))}
+    </div>
+  );
+}
+
+function MediaAdmin({
+  content,
+  setDraft,
+}: {
+  content: SiteContent;
+  setDraft: (updater: (current: SiteContent) => SiteContent) => void;
+}) {
+  const [message, setMessage] = useState("");
+
+  const onFile = async (file: File | undefined, apply: (url: string) => void) => {
+    if (!file) return;
+    try {
+      apply(await uploadStudioImage(file));
+      setMessage("Uploaded.");
+    } catch (error) {
+      setMessage(error instanceof Error ? error.message : "Upload failed.");
+    }
+  };
+
+  return (
+    <div className="space-y-4">
+      {message ? <p className="text-[0.7rem] uppercase tracking-[0.16em] text-gold">{message}</p> : null}
+      {content.gallery.stills.map((still, index) => (
+        <article key={`${still.id}-${index}`} className="card-cinema space-y-3 p-4">
+          <p className="text-[0.68rem] uppercase tracking-[0.2em] text-gold">{still.title}</p>
+          <input
+            type="file"
+            accept="image/jpeg,image/png,image/webp,image/gif"
+            onChange={(event) => {
+              void onFile(event.target.files?.[0], (url) => {
+                setDraft((current) => ({
+                  ...current,
+                  gallery: {
+                    ...current.gallery,
+                    stills: current.gallery.stills.map((item, i) =>
+                      i === index ? { ...item, imageUrl: url } : item,
+                    ),
+                  },
+                }));
+              });
+              event.target.value = "";
+            }}
           />
         </article>
       ))}

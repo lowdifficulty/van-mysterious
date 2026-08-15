@@ -1,24 +1,80 @@
 @import "tailwindcss";
 
+:root {
+  --velvet: #070506;
+  --velvet-deep: #0c090b;
+  --panel: #141014;
+  --gold: #c9a44a;
+  --gold-soft: #e8d5a3;
+  --gold-dim: #8a7040;
+  --fog: #8b8794;
+  --cream: #f3ead8;
+  --muted: #a89f93;
+  --wine: #3d1a24;
+  --page-bg: #070506;
+  --page-fg: #f3ead8;
+  --grain-opacity: 0.09;
+  --vignette: inset 0 0 180px 40px rgba(0, 0, 0, 0.72);
+  --letterbox: #000000;
+  --input-bg: rgba(0, 0, 0, 0.35);
+  --card-from: rgba(20, 16, 20, 0.92);
+  --card-to: rgba(7, 5, 6, 0.88);
+  --studio-bar: rgba(7, 5, 6, 0.94);
+  --studio-pages: rgba(12, 9, 11, 0.92);
+  --knob-track: #2a2420;
+}
+
+html[data-theme="light"] {
+  --velvet: #f4efe6;
+  --velvet-deep: #ebe4d8;
+  --panel: #fffdf8;
+  --gold: #9a7428;
+  --gold-soft: #7a5a1c;
+  --gold-dim: #b8923a;
+  --fog: #7a7368;
+  --cream: #1a1412;
+  --muted: #6f6458;
+  --wine: #7a3040;
+  --page-bg: #f4efe6;
+  --page-fg: #1a1412;
+  --grain-opacity: 0.04;
+  --vignette: inset 0 0 140px 28px rgba(244, 239, 230, 0.7);
+  --letterbox: #1a1412;
+  --input-bg: #fffdf8;
+  --card-from: rgba(255, 253, 248, 0.96);
+  --card-to: rgba(244, 239, 230, 0.94);
+  --studio-bar: rgba(244, 239, 230, 0.96);
+  --studio-pages: rgba(235, 228, 216, 0.96);
+  --knob-track: #d8cfc0;
+}
+
 @theme inline {
-  --color-velvet: #070506;
-  --color-velvet-deep: #0c090b;
-  --color-panel: #141014;
-  --color-gold: #c9a44a;
-  --color-gold-soft: #e8d5a3;
-  --color-gold-dim: #8a7040;
-  --color-fog: #8b8794;
-  --color-cream: #f3ead8;
-  --color-muted: #a89f93;
-  --color-wine: #3d1a24;
+  --color-velvet: var(--velvet);
+  --color-velvet-deep: var(--velvet-deep);
+  --color-panel: var(--panel);
+  --color-gold: var(--gold);
+  --color-gold-soft: var(--gold-soft);
+  --color-gold-dim: var(--gold-dim);
+  --color-fog: var(--fog);
+  --color-cream: var(--cream);
+  --color-muted: var(--muted);
+  --color-wine: var(--wine);
   --font-display: var(--font-display);
   --font-sans: var(--font-sans);
 }
 
+html {
+  color-scheme: dark;
+}
+
+html[data-theme="light"] {
+  color-scheme: light;
+}
+
 html,
 body {
-  background: #070506;
-  color: #f3ead8;
+  background: var(--page-bg);
+  color: var(--page-fg);
   min-height: 100%;
   overflow-x: hidden;
   padding-left: env(safe-area-inset-left);
@@ -34,8 +90,8 @@ body {
 }
 
 ::selection {
-  background: #c9a44a;
-  color: #070506;
+  background: var(--gold);
+  color: var(--velvet);
 }
 
 .film-grain::after {
@@ -44,7 +100,7 @@ body {
   inset: 0;
   z-index: 40;
   pointer-events: none;
-  opacity: 0.09;
+  opacity: var(--grain-opacity);
   mix-blend-mode: overlay;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   animation: grain 0.8s steps(2) infinite;
@@ -104,7 +160,7 @@ body {
   inset: 0;
   z-index: 30;
   pointer-events: none;
-  box-shadow: inset 0 0 180px 40px rgba(0, 0, 0, 0.72);
+  box-shadow: var(--vignette);
 }
 
 .gold-rule {
@@ -128,7 +184,7 @@ body {
   left: 0;
   right: 0;
   height: min(5vh, 36px);
-  background: #000;
+  background: var(--letterbox);
   z-index: 5;
   pointer-events: none;
 }
@@ -151,9 +207,9 @@ body {
 .input-cinema {
   width: 100%;
   min-height: 2.75rem;
-  border: 1px solid rgba(201, 164, 74, 0.28);
-  background: rgba(0, 0, 0, 0.35);
-  color: #f3ead8;
+  border: 1px solid color-mix(in srgb, var(--gold) 28%, transparent);
+  background: var(--input-bg);
+  color: var(--cream);
   padding: 0.8rem 1rem;
   font-size: 16px;
   letter-spacing: 0.01em;
@@ -161,8 +217,8 @@ body {
 
 .input-cinema:focus {
   outline: none;
-  border-color: #c9a44a;
-  box-shadow: 0 0 0 1px rgba(201, 164, 74, 0.25);
+  border-color: var(--gold);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--gold) 25%, transparent);
 }
 
 .btn-gold {
@@ -170,8 +226,8 @@ body {
   align-items: center;
   justify-content: center;
   min-height: 2.75rem;
-  background: #c9a44a;
-  color: #070506;
+  background: var(--gold);
+  color: var(--velvet);
   padding: 0.75rem 1.4rem;
   font-size: 0.72rem;
   letter-spacing: 0.22em;
@@ -181,7 +237,7 @@ body {
 }
 
 .btn-gold:hover {
-  background: #e8d5a3;
+  background: var(--gold-soft);
 }
 
 .btn-ghost {
@@ -189,8 +245,8 @@ body {
   align-items: center;
   justify-content: center;
   min-height: 2.75rem;
-  border: 1px solid rgba(201, 164, 74, 0.45);
-  color: #e8d5a3;
+  border: 1px solid color-mix(in srgb, var(--gold) 45%, transparent);
+  color: var(--gold-soft);
   padding: 0.75rem 1.4rem;
   font-size: 0.72rem;
   letter-spacing: 0.22em;
@@ -199,17 +255,13 @@ body {
 }
 
 .btn-ghost:hover {
-  border-color: #c9a44a;
-  background: rgba(201, 164, 74, 0.08);
+  border-color: var(--gold);
+  background: color-mix(in srgb, var(--gold) 8%, transparent);
 }
 
 .card-cinema {
-  border: 1px solid rgba(201, 164, 74, 0.16);
-  background: linear-gradient(
-    180deg,
-    rgba(20, 16, 20, 0.92),
-    rgba(7, 5, 6, 0.88)
-  );
+  border: 1px solid color-mix(in srgb, var(--gold) 16%, transparent);
+  background: linear-gradient(180deg, var(--card-from), var(--card-to));
 }
 
 @keyframes fade-up {
@@ -262,8 +314,8 @@ body {
   justify-content: space-between;
   gap: 0.75rem;
   padding: 0.7rem 1.1rem;
-  border-bottom: 1px solid rgba(201, 164, 74, 0.28);
-  background: rgba(7, 5, 6, 0.94);
+  border-bottom: 1px solid color-mix(in srgb, var(--gold) 28%, transparent);
+  background: var(--studio-bar);
   backdrop-filter: blur(12px);
 }
 
@@ -275,8 +327,8 @@ body {
   flex-wrap: nowrap;
   gap: 0.35rem 0.85rem;
   padding: 0.45rem 1.1rem 0.55rem;
-  border-bottom: 1px solid rgba(201, 164, 74, 0.12);
-  background: rgba(12, 9, 11, 0.92);
+  border-bottom: 1px solid color-mix(in srgb, var(--gold) 12%, transparent);
+  background: var(--studio-pages);
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
 }
@@ -293,23 +345,23 @@ body {
   font-size: 0.65rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: #a89f93;
+  color: var(--muted);
   padding: 0.35rem 0;
 }
 
 .studio-pages a.is-active,
 .studio-pages a:hover {
-  color: #e8d5a3;
+  color: var(--gold-soft);
 }
 
 .studio-toggle {
   display: inline-flex;
   align-items: center;
   gap: 0.55rem;
-  border: 1px solid rgba(201, 164, 74, 0.45);
+  border: 1px solid color-mix(in srgb, var(--gold) 45%, transparent);
   padding: 0.28rem 0.7rem 0.28rem 0.35rem;
   border-radius: 999px;
-  color: #e8d5a3;
+  color: var(--gold-soft);
   font-size: 0.65rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -320,7 +372,7 @@ body {
   width: 2.15rem;
   height: 1.15rem;
   border-radius: 999px;
-  background: #2a2420;
+  background: var(--knob-track);
 }
 
 .studio-toggle-knob::after {
@@ -331,26 +383,26 @@ body {
   width: 0.85rem;
   height: 0.85rem;
   border-radius: 999px;
-  background: #a89f93;
+  background: var(--muted);
   transition: left 0.16s ease, right 0.16s ease, background 0.16s ease;
 }
 
 .studio-toggle.is-on {
-  border-color: #c9a44a;
-  background: rgba(201, 164, 74, 0.1);
+  border-color: var(--gold);
+  background: color-mix(in srgb, var(--gold) 10%, transparent);
 }
 
 .studio-toggle.is-on .studio-toggle-knob {
-  background: #c9a44a;
+  background: var(--gold);
 }
 
 .studio-toggle.is-on .studio-toggle-knob::after {
   left: 1.15rem;
-  background: #070506;
+  background: var(--velvet);
 }
 
 .studio-editable {
-  outline: 1px dashed rgba(201, 164, 74, 0.55);
+  outline: 1px dashed color-mix(in srgb, var(--gold) 55%, transparent);
   outline-offset: 4px;
   cursor: text;
   min-width: 1ch;
@@ -358,15 +410,15 @@ body {
 
 .studio-editable:hover,
 .studio-editable:focus {
-  outline: 2px solid #c9a44a;
-  background: rgba(201, 164, 74, 0.08);
+  outline: 2px solid var(--gold);
+  background: color-mix(in srgb, var(--gold) 8%, transparent);
 }
 
 .admin-tab {
   flex: 0 0 auto;
   min-height: 2.75rem;
-  border: 1px solid rgba(201, 164, 74, 0.28);
-  color: #a89f93;
+  border: 1px solid color-mix(in srgb, var(--gold) 28%, transparent);
+  color: var(--muted);
   padding: 0.55rem 0.9rem;
   font-size: 0.68rem;
   letter-spacing: 0.18em;
@@ -375,27 +427,99 @@ body {
 
 .admin-tab.is-active,
 .admin-tab:hover {
-  border-color: #c9a44a;
-  color: #e8d5a3;
-  background: rgba(201, 164, 74, 0.08);
+  border-color: var(--gold);
+  color: var(--gold-soft);
+  background: color-mix(in srgb, var(--gold) 8%, transparent);
 }
 
 .admin-remove {
   font-size: 0.65rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: #e8d5a3;
-  border-bottom: 1px solid rgba(201, 164, 74, 0.35);
+  color: var(--gold-soft);
+  border-bottom: 1px solid color-mix(in srgb, var(--gold) 35%, transparent);
 }
 
 .admin-remove:hover {
-  color: #c9a44a;
+  color: var(--gold);
+}
+
+.editor-drawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 64;
+  width: min(22rem, 92vw);
+  height: 100dvh;
+  overflow-y: auto;
+  padding: 7rem 1.1rem 1.5rem;
+  border-right: 1px solid color-mix(in srgb, var(--gold) 28%, transparent);
+  background: var(--studio-bar);
+  box-shadow: 16px 0 40px rgba(0, 0, 0, 0.28);
+}
+
+.contact-bubble {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 60;
+  display: inline-flex;
+  min-height: 3rem;
+  align-items: center;
+  justify-content: center;
+  padding: 0.7rem 1.1rem;
+  background: var(--gold);
+  color: var(--velvet);
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 600;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+}
+
+.contact-bubble:hover {
+  background: var(--gold-soft);
+}
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.5rem;
+  min-width: 2.5rem;
+  padding: 0.4rem 0.75rem;
+  border: 1px solid color-mix(in srgb, var(--gold) 45%, transparent);
+  color: var(--gold);
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.theme-toggle:hover {
+  border-color: var(--gold);
+  background: color-mix(in srgb, var(--gold) 8%, transparent);
+}
+
+.theme-toggle-when-light {
+  display: none;
+}
+
+html[data-theme="light"] .theme-toggle-when-dark {
+  display: none;
+}
+
+html[data-theme="light"] .theme-toggle-when-light {
+  display: inline;
+}
+
+html[data-theme="light"] .film-grain::after {
+  mix-blend-mode: multiply;
 }
 
 select.input-cinema {
   appearance: none;
-  background-image: linear-gradient(45deg, transparent 50%, #c9a44a 50%),
-    linear-gradient(135deg, #c9a44a 50%, transparent 50%);
+  background-image: linear-gradient(45deg, transparent 50%, var(--gold) 50%),
+    linear-gradient(135deg, var(--gold) 50%, transparent 50%);
   background-position:
     calc(100% - 18px) 50%,
     calc(100% - 12px) 50%;

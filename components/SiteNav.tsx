@@ -4,11 +4,15 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { ResetGate } from "@/components/ResetGate";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { Editable } from "@/components/studio/Editable";
+import { useStudioOptional } from "@/components/studio/StudioContext";
 import type { NavItem } from "@/lib/site-content-types";
 
 export function SiteNav({ items }: { items: NavItem[] }) {
   const pathname = usePathname();
+  const studio = useStudioOptional();
+  const navItems = (studio?.draft.nav ?? items).filter((item) => !item.hidden);
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -41,29 +45,36 @@ export function SiteNav({ items }: { items: NavItem[] }) {
           <Editable path="site.name" as="span" />
         </Link>
         <nav className="hidden flex-wrap items-center justify-end gap-x-5 gap-y-2 text-[0.68rem] uppercase tracking-[0.22em] text-muted lg:flex">
-          {items.map((item, index) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="transition-colors hover:text-gold-soft"
-            >
-              <Editable path={`nav.${index}.label`} as="span" />
-            </Link>
-          ))}
+          {navItems.map((item) => {
+            const index = (studio?.draft.nav ?? items).findIndex((entry) => entry.href === item.href);
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="transition-colors hover:text-gold-soft"
+              >
+                <Editable path={`nav.${index}.label`} as="span" />
+              </Link>
+            );
+          })}
           <Link href="/login" className="text-gold hover:text-gold-soft">
             Login
           </Link>
           <ResetGate />
+          <ThemeToggle />
         </nav>
-        <button
-          type="button"
-          className="inline-flex min-h-11 min-w-11 items-center justify-center border border-gold/35 px-3 text-[0.68rem] uppercase tracking-[0.2em] text-gold lg:hidden"
-          aria-expanded={open}
-          aria-controls="mobile-menu"
-          onClick={() => setOpen(true)}
-        >
-          Menu
-        </button>
+        <div className="flex items-center gap-2 lg:hidden">
+          <ThemeToggle />
+          <button
+            type="button"
+            className="inline-flex min-h-11 min-w-11 items-center justify-center border border-gold/35 px-3 text-[0.68rem] uppercase tracking-[0.2em] text-gold"
+            aria-expanded={open}
+            aria-controls="mobile-menu"
+            onClick={() => setOpen(true)}
+          >
+            Menu
+          </button>
+        </div>
       </div>
       {open ? (
         <div
@@ -104,16 +115,19 @@ export function SiteNav({ items }: { items: NavItem[] }) {
             </button>
           </div>
           <nav className="flex flex-1 flex-col items-center justify-center gap-1 overflow-y-auto px-6 pb-16">
-            {items.map((item, index) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="font-display min-h-14 py-2 text-center text-3xl tracking-wide text-cream sm:text-4xl"
-                onClick={() => setOpen(false)}
-              >
-                <Editable path={`nav.${index}.label`} as="span" />
-              </Link>
-            ))}
+            {navItems.map((item) => {
+              const index = (studio?.draft.nav ?? items).findIndex((entry) => entry.href === item.href);
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="font-display min-h-14 py-2 text-center text-3xl tracking-wide text-cream sm:text-4xl"
+                  onClick={() => setOpen(false)}
+                >
+                  <Editable path={`nav.${index}.label`} as="span" />
+                </Link>
+              );
+            })}
             <Link
               href="/login"
               className="font-display min-h-14 py-2 text-center text-3xl tracking-wide text-gold sm:text-4xl"
@@ -121,7 +135,8 @@ export function SiteNav({ items }: { items: NavItem[] }) {
             >
               Login
             </Link>
-            <div className="mt-8 text-[0.72rem] uppercase tracking-[0.22em]">
+            <div className="mt-8 flex flex-col items-center gap-4 text-[0.72rem] uppercase tracking-[0.22em]">
+              <ThemeToggle />
               <ResetGate />
             </div>
           </nav>
